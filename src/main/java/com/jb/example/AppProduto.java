@@ -2,21 +2,19 @@ package com.jb.example;
 
 import com.jb.example.dao.CategoriaDao;
 import com.jb.example.dao.ProdutoDao;
-import com.jb.example.dto.ProdutoDTO;
+import com.jb.example.vo.ProdutoVO;
 import com.jb.example.model.Categoria;
 import com.jb.example.model.Produto;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import java.math.BigDecimal;
 import java.util.List;
 
 /**
  * Hello world!
  */
-public class App {
+public class AppProduto {
 
     public static void main(String[] args) {
         // cadastrarProduto();
@@ -28,11 +26,11 @@ public class App {
         BigDecimal preco = produtoDao.buscarPrecoDoProdutoComNome("Xiaomi Redmi");
         System.out.println("Preço : " + preco);
 
-        ProdutoDTO xiaomi_redmi = produtoDao.buscarDtoPorNome("Xiaomi Redmi");
-        System.out.println(xiaomi_redmi);
+        ProdutoVO vo = produtoDao.buscarVoPorNome("Xiaomi Redmi");
+        System.out.println(vo);
     }
 
-    private static void cadastrarProduto() {
+    public static void cadastrarProduto() {
         Categoria celulares = new Categoria("CELULARES");
         Produto celular = new Produto("Xiaomi Redmi", "Muito legal", new BigDecimal("800"), celulares);
 

@@ -23,4 +23,8 @@ public class CategoriaDao {
         Categoria merge = em.merge(categoria);
         this.em.remove(merge);
     }
+
+    public Categoria buscarPorId(Long id){
+        return em.find(Categoria.class, id);
+    }
 }

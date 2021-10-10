@@ -1,12 +1,12 @@
-package com.jb.example.dto;
+package com.jb.example.vo;
 
 import java.math.BigDecimal;
 
-public class ProdutoDTO {
+public class ProdutoVO {
     private String nome;
     private BigDecimal preco;
 
-    public ProdutoDTO(String nome, BigDecimal preco) {
+    public ProdutoVO(String nome, BigDecimal preco) {
         this.nome = nome;
         this.preco = preco;
     }
@@ -29,7 +29,7 @@ public class ProdutoDTO {
 
     @Override
     public String toString() {
-        return "ProdutoDTO{" +
+        return "ProdutoVO{" +
                 "nome='" + nome + '\'' +
                 ", preco=" + preco +
                 '}';

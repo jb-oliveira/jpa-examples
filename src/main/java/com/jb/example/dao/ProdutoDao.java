@@ -1,10 +1,9 @@
 package com.jb.example.dao;
 
-import com.jb.example.dto.ProdutoDTO;
+import com.jb.example.vo.ProdutoVO;
 import com.jb.example.model.Produto;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.math.BigDecimal;
 import java.util.List;
@@ -51,11 +50,11 @@ public class ProdutoDao {
                 .getSingleResult();
     }
 
-    public ProdutoDTO buscarDtoPorNome(String nome) {
-        String jpql = "SELECT new com.jb.example.dto.ProdutoDTO(p.nome,p.preco) " +
+    public ProdutoVO buscarVoPorNome(String nome) {
+        String jpql = "SELECT new com.jb.example.vo.ProdutoVO(p.nome,p.preco) " +
                 " FROM Produto p " +
                 " WHERE p.nome = :nome";
-        return em.createQuery(jpql, ProdutoDTO.class)
+        return em.createQuery(jpql, ProdutoVO.class)
                 .setParameter("nome", nome)
                 .getSingleResult();
     }
