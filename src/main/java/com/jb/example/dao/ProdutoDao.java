@@ -5,6 +5,7 @@ import com.jb.example.model.Produto;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class ProdutoDao {
 
     public List<Produto> buscarTodos() {
         String jpql = "select p from Produto p";
-        Query query = this.em.createQuery(jpql);
+        TypedQuery<Produto> query = this.em.createQuery(jpql, Produto.class);
         return query.getResultList();
     }
 
