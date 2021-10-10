@@ -1,4 +1,4 @@
-package com.jboliveira;
+package com.jb.example;
 
 /**
  * Hello world!

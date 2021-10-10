@@ -1,4 +1,4 @@
-package com.jboliveira;
+package com.jb.example;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
