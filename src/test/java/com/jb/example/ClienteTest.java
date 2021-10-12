@@ -41,18 +41,29 @@ public class ClienteTest {
 
         em.getTransaction().begin();
 
-        categoriaDao.salvar(celulares);
-        categoriaDao.salvar(videogames);
-        categoriaDao.salvar(informatica);
+        if (em.find(Categoria.class, celulares.getId()) == null) {
+            categoriaDao.salvar(celulares);
+        }
+        if (em.find(Categoria.class, videogames.getId()) == null) {
+            categoriaDao.salvar(videogames);
+        }
+        if (em.find(Categoria.class, informatica.getId()) == null) {
+            categoriaDao.salvar(informatica);
+        }
 
-        produtoDao.salvar(celular);
-        produtoDao.salvar(videogame);
-        produtoDao.salvar(macbook);
+        if (0L == em.createQuery("select count(p) from Produto p", Long.class).getSingleResult()) {
+            produtoDao.salvar(celular);
+            produtoDao.salvar(videogame);
+            produtoDao.salvar(macbook);
+        }
 
-        clienteDao.salvar(cliente);
-
-        pedidoDao.salvar(pedido);
-        pedidoDao.salvar(pedido2);
+        if (em.find(Cliente.class, 1L) == null) {
+            clienteDao.salvar(cliente);
+        }
+        if (0L == em.createQuery("select count(p) from Pedido p", Long.class).getSingleResult()) {
+            pedidoDao.salvar(pedido);
+            pedidoDao.salvar(pedido2);
+        }
 
         em.getTransaction().commit();
         em.close();

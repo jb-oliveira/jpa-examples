@@ -3,33 +3,29 @@ package com.jb.example.model;
 import javax.persistence.*;
 
 @Entity
-@Table( name = "categorias")
+@Table(name = "categorias")
 public class Categoria {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String nome;
+    @EmbeddedId
+    private CategoriaId id;
 
     public Categoria() {
     }
 
     public Categoria(String nome) {
-        this.nome = nome;
+
+        this.id = new CategoriaId(nome, "TIPO");
     }
 
-    public Long getId() {
+    public CategoriaId getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(CategoriaId id) {
         this.id = id;
     }
 
     public String getNome() {
-        return nome;
+        return this.id.getNome();
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 }
