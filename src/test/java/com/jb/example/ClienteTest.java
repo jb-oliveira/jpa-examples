@@ -5,17 +5,14 @@ import com.jb.example.dao.ClienteDao;
 import com.jb.example.dao.PedidoDao;
 import com.jb.example.dao.ProdutoDao;
 import com.jb.example.model.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import java.math.BigDecimal;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest {
+public class ClienteTest {
 
     @BeforeAll
     private static void popularBancoDeDados() {
@@ -27,7 +24,7 @@ public class AppTest {
         Produto videogame = new Produto("PS5", "Playstation 5", new BigDecimal("8000"), videogames);
         Produto macbook = new Produto("Macbook", "Macboo pro retina", new BigDecimal("14000"), informatica);
 
-        Cliente cliente = new Cliente("Rodrigo", "123456");
+        Cliente cliente = new Cliente("Joao", "123456");
 
         Pedido pedido = new Pedido(cliente);
         pedido.adicionarItem(new ItemPedido(10, pedido, celular));
@@ -61,8 +58,13 @@ public class AppTest {
         em.close();
     }
 
+
     @Test
-    public void testBuscaDinamica(){
+    public void testBuscaPorId(){
+        EntityManager em = JpaUtil.getEntityManager();
+        ClienteDao clienteDao = new ClienteDao(em);
+        Cliente cliente = clienteDao.buscarPorId(1L);
+        Assertions.assertEquals("Joao", cliente.getDadosPessoais().getNome());
 
     }
 }
